@@ -3,32 +3,30 @@ import java.util.concurrent.TimeUnit;
 
 public class HackerThread extends Thread{
     private String nomeThread;
+    private int min;
+    private int max;
 
-    public HackerThread(String nomeThread){
+    public HackerThread(String nomeThread,int min,int max){
         this.nomeThread = nomeThread;
+        this.min = min;
+        this.max = max;
     }
     @Override
     public void run() {
         Random generator = new Random();
-
-        while (true){
+        for(int i =min;i<=max;i++) {
             try {
                 TimeUnit.MILLISECONDS.sleep(1);
             } catch (InterruptedException e) {
             }
 
-            int senhaDecifrada = generator.nextInt(10000);;
-            if (this.isInterrupted() == false) {
-                if (Main.cofre.verificaSenha(senhaDecifrada) == true) {
-                    System.out.println("Senha Decifrada(" + nomeThread + "): " + senhaDecifrada);
-                    Main.hacker1.interrupt();
-                    Main.hacker2.interrupt();
-                    Main.policia.interrupt();
-                    System.exit(0);
-                    break;
-                }
+            if (Main.cofre.verificaSenha(i) == true) {
+                System.out.println("Senha Decifrada(" + nomeThread + "): " + i);
+                System.exit(0);
+                break;
             }
-        }
 
+        }
     }
+
 }

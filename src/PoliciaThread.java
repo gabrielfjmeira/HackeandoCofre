@@ -1,22 +1,28 @@
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
-public class PoliciaThread extends Thread{
-
+public class PoliciaThread extends Thread {
+    private int intervalo;
     public PoliciaThread() {
-        int intervalo = 10000;
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (Main.policia.isInterrupted() == false){
-                    System.out.println("Os hackers foram pegos pela polícia e estão presos!");
-                    Main.hacker1.interrupt();
-                    Main.hacker2.interrupt();
-                    Main.policia.interrupt();
-                    System.exit(0);
+        this.intervalo = 10000;
+    }
+
+
+
+
+        @Override
+        public void run() {
+            for (int i = 1000; i <= this.intervalo; i += 1000) {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(1000);
+                    System.out.println(" Policia chegando em: " + (this.intervalo - i) / 1000 + "S");
+                } catch (InterruptedException e) {
                 }
             }
-        }, intervalo);
+            System.out.println("Os hackers foram pegos pela polícia e estão presos!");
+            System.exit(0);
+        }
+
     }
-}
+

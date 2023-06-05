@@ -12,8 +12,8 @@ public class Main {
         policia = new PoliciaThread();
 
         //Criação do Hacker
-        hacker1 = new HackerThread("Hacker 1");
-        hacker2 = new HackerThread("Hacker 2");
+        hacker1 = new HackerThread("Hacker 1",1,4999);
+        hacker2 = new HackerThread("Hacker 2",5000,9999);
 
         //Inicializa as Threads
         hacker1.start();
@@ -21,9 +21,9 @@ public class Main {
         policia.start();
 
         //Executa o Programa
-        policia.run();
-        hacker1.run();
-        hacker2.run();
+//        policia.run();
+//        hacker1.run();
+//        hacker2.run();
 
     }
 }

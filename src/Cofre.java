@@ -5,7 +5,7 @@ public class Cofre {
 
     public Cofre() {
         Random generator = new Random();
-        this.senha = generator.nextInt(10000);;
+        this.senha = generator.nextInt(10000);
         System.out.println("Senha do Cofre: " + senha);
     }
 
